@@ -14,4 +14,9 @@ router.get('/quizes/question',	quizController.question);
 /* Answer page. */
 router.get('/quizes/answer',	quizController.answer);
 
+/* Author page. */
+router.get('/author', function(req, res){
+	res.render('author');
+});
+
 module.exports = router;
