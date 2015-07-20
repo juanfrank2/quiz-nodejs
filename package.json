@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  "engines":{
+  "engines": {
     "npm": "2.7.4",
     "node": "0.12.2"
   },
@@ -17,6 +17,8 @@
     "express": "~4.9.0",
     "express-partials": "^0.3.0",
     "morgan": "~1.3.0",
-    "serve-favicon": "~2.1.3"
+    "sequelize": "^3.4.1",
+    "serve-favicon": "~2.1.3",
+    "sqlite3": "^3.0.9"
   }
 }
