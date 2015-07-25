@@ -17,15 +17,15 @@ exports.load = function (req,res, next, quizId) {
 
 // GET /quizes
 exports.index = function(req, res) {
-	var search = req.query.search.replace(' ','%');
+	var search = (req.query.search)?req.query.search:'';
 	models.Quiz.findAll(({
   		where: {
     		pregunta : {
-    			$like: '%'+search+'%'
+    			$like: '%'+search.replace(' ','%')+'%'
     		}
     	}
 	})).then(function(quizes){
-		res.render('quizes/index', { quizes: quizes, search: req.query.search});
+		res.render('quizes/index', { quizes: quizes, search: search});
 	});
 };
 
