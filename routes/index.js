@@ -14,10 +14,16 @@ router.param('quizId', quizController.load);
 // Listado de preguntas
 router.get('/quizes',	quizController.index);
 
-/* Question page. */
+// Fomulario Creación de pregunta
+router.get('/quizes/new',	quizController.new);
+
+// Guardar pregunta
+router.post('/quizes/create',quizController.create);
+
+// Question page /quizes/(\\d+)
 router.get('/quizes/:quizId(\\d+)',	quizController.show);
 
-/* Answer page. */
+// Answer page. /quizes/(\\d+)/answer
 router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);
 
 
