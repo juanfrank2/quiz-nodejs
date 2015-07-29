@@ -32,7 +32,7 @@ exports.index = function(req, res) {
 // GET /quizes/new
 exports.new = function(req, res){
 	var quiz = models.Quiz.build(
-		{pregunta: "Pregunta", respuesta: "Respuesta"}
+		{pregunta: "Pregunta", respuesta: "Respuesta", tematica: "otro"}
 	);
 	res.render('quizes/new', {quiz: quiz, errors: []});
 };
@@ -48,7 +48,7 @@ exports.create = function(req, res){
 		}
 		else{
 			// Se almacena en BD la pregunta enviada
-			quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
+			quiz.save({fields: ["pregunta", "respuesta", "tematica"]}).then(function(){
 				res.redirect('/quizes'); // Redirigimos al listado de prguntas
 			});
 		}
@@ -65,13 +65,14 @@ exports.edit = function(req, res){
 exports.update = function(req, res){
 	req.quiz.pregunta 	= req.body.quiz.pregunta;
 	req.quiz.respuesta 	= req.body.quiz.respuesta;
+	req.quiz.tematica	= req.body.quiz.tematica;
 
 	req.quiz.validate().then(function(err){
 		if (err){
 			res.render('quizes/edit', {quiz: req.quiz, errors: err.errrors});
 		}
 		else {
-			req.quiz.save( {fields: ["pregunta", "respuesta"]})
+			req.quiz.save( {fields: ["pregunta", "respuesta", "tematica"]})
 				.then(function(){
 					res.redirect('/quizes');
 				});
@@ -95,7 +96,7 @@ exports.show = function(req, res) {
 // GET /quizes/:id/answer
 exports.answer = function(req, res) {
 	var resultado = 'Incorrecto';
-	if (req.query.respuesta === req.quiz.respuesta){
+	if (req.query.respuesta.toUpperCase() === req.quiz.respuesta.toUpperCase()){
 		resultado = 'Correcto';
 	}
 	res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, errors: []});

@@ -1,6 +1,19 @@
+<% var tematicas = {
+	"humanidades":	"Humanidades",
+	"ocio":			"Ocio",
+	"ciencia":		"Ciencia",
+	"tecnologia":	"Tecnología",
+	"otro":			"Otro"
+};
+%>
 <label for="preg" class="rem">Pregunta:</label>
 <input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/> <p>
 <label for="resp" class="rem">Respuesta:</label>
 <input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/> <p>
+<select name="quiz[tematica]">
+	<% for (tema in tematicas){ %>
+		<option value="<%= tema %>" <%= (quiz.tematica === tema)?"selected":"" %>><%= tematicas[tema] %></option>
+	<% } %>
+ </select>
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Salvar">
