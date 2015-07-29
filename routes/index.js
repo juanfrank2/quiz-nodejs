@@ -26,6 +26,9 @@ router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
 // Actualizar pregunta
 router.put('/quizes/:quizId(\\d+)', quizController.update);
 
+// Borrar pregunta
+router.delete('/quizes/:quizId(\\d+)', quizController.destroy);
+
 // Question page /quizes/(\\d+)
 router.get('/quizes/:quizId(\\d+)',	quizController.show);
 
