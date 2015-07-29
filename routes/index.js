@@ -20,6 +20,12 @@ router.get('/quizes/new',	quizController.new);
 // Guardar pregunta
 router.post('/quizes/create',quizController.create);
 
+// Editar pregunta
+router.get('/quizes/:quizId(\\d+)/edit', quizController.edit);
+
+// Actualizar pregunta
+router.put('/quizes/:quizId(\\d+)', quizController.update);
+
 // Question page /quizes/(\\d+)
 router.get('/quizes/:quizId(\\d+)',	quizController.show);
 
