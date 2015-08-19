@@ -33,6 +33,9 @@ exports.create = function(req, res){
 		// La sesion queda definida por req.session.user
 		req.session.user = {id: user.id, username: user.username};
 
+		// Se almacena el momento en el que se loga el usuario para hacer logout
+        req.session.time = new Date().getTime();
+
 		// Redirección a la página anterior al login
 		res.redirect(req.session.redir.toString()); 
 	});
