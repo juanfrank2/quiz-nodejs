@@ -20,13 +20,13 @@ router.get('/logout',					sessionController.destroy);	// Destruir sesión
 
 // Rutas para /quizes
 router.get('/quizes',						quizController.index);	// Listado de preguntas
-router.get('/quizes/new',					quizController.new);	// Fomulario Creación de pregunta
-router.post('/quizes/create',				quizController.create);	// Guardar pregunta
-router.get('/quizes/:quizId(\\d+)/edit',	quizController.edit);	// Editar pregunta
-router.put('/quizes/:quizId(\\d+)', 		quizController.update);	// Actualizar pregunta
-router.delete('/quizes/:quizId(\\d+)', 		quizController.destroy);// Borrar pregunta
 router.get('/quizes/:quizId(\\d+)',			quizController.show);	// Question page /quizes/(\\d+)
 router.get('/quizes/:quizId(\\d+)/answer',	quizController.answer);	// Answer page. /quizes/(\\d+)/answer
+router.get('/quizes/new',					sessionController.loginRequired, quizController.new);	// Fomulario Creación de pregunta
+router.post('/quizes/create',				sessionController.loginRequired, quizController.create);	// Guardar pregunta
+router.get('/quizes/:quizId(\\d+)/edit',	sessionController.loginRequired, quizController.edit);	// Editar pregunta
+router.put('/quizes/:quizId(\\d+)', 		sessionController.loginRequired, quizController.update);	// Actualizar pregunta
+router.delete('/quizes/:quizId(\\d+)', 		sessionController.loginRequired, quizController.destroy);// Borrar pregunta
 
 // Rutas para Comments
 router.get('/quizes/:quizId(\\d+)/comments/new',	commentController.new);
